@@ -25,7 +25,7 @@ from ..snowflakes import snowflake_factory
 from ..tokenize import create_token as ctoken
 
 
-users_router = APIRouter(prefix='/users')
+users_router = APIRouter(prefix='/api/users')
 
 
 USERNAME_REGEX = re.compile(r'^[a-zA-Z0-9\-_]{1,45}$')
