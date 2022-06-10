@@ -37,9 +37,11 @@ class Forbidden(HTTPError):
     HTTP_CODE = 403
     HTTP_MESSAGE = 'Forbidden'
 
+
 class Unauthorized(HTTPError):
     HTTP_CODE = 401
     HTTP_MESSAGE = 'Unauthorized'
+
 
 class BadData(HTTPError):
     HTTP_CODE = 400

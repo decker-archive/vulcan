@@ -11,9 +11,10 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
 from fastapi import Request
-from .tokenize import verify_token
+
 from .database import User
 from .errors import BadData, HTTPError, Unauthorized
+from .tokenize import verify_token
 
 
 def authorize(req: Request):

@@ -12,16 +12,17 @@
 # GNU Affero General Public License for more details.
 from fastapi import FastAPI
 
-from manhattan.errors import BadData, HTTPError
-from manhattan.utils import jsonify
 from manhattan.database import connect
+from manhattan.errors import BadData, HTTPError
 
 # routes
 from manhattan.users import users_router
+from manhattan.utils import jsonify
 
 app = FastAPI()
 
 app.include_router(users_router)
+
 
 @app.exception_handler(HTTPError)
 async def httperror(_, err: HTTPError):
@@ -33,18 +34,20 @@ async def httperror(_, err: HTTPError):
 
     return resp
 
+
 @app.exception_handler(404)
 async def notfound(*_):
     err = HTTPError(custom_msg='Not Found')
     err.HTTP_CODE = 404
     return await httperror(None, err=err)
 
+
 @app.exception_handler(KeyError)
 async def baddata(*_):
     err = BadData()
     return await httperror(None, err=err)
 
+
 @app.on_event('startup')
 async def on_startup():
     connect()
-

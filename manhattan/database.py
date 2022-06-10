@@ -10,14 +10,13 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
-import os
-import logging
 import datetime
+import logging
+import os
 
 import dotenv
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cqlengine import columns, connection, management, models
-
 
 dotenv.load_dotenv()
 cloud = {'secure_connect_bundle': os.getcwd() + r'/private/cass-bundle.zip'}
@@ -57,6 +56,7 @@ def _get_date():
 
 class User(models.Model):
     """Users are the base entity of Manhattan."""
+
     id: int = columns.BigInt(primary_key=True, partition_key=True)
     email: str = columns.Text()
     password: str = columns.Text()
@@ -75,6 +75,7 @@ class User(models.Model):
 
 class UserPost(models.Model):
     """A Post created by a User."""
+
     id: int = columns.BigInt(primary_key=True)
     user_id: int = columns.BigInt()
     bucket_id: int = columns.Integer()
@@ -90,7 +91,6 @@ def to_dict(model: models.Model) -> dict:
 
     if 'id' in dict_repr:
         dict_repr['id'] = str(dict_repr['id'])
-
 
     if isinstance(model, User):
         dict_repr.pop('analytic_flags')

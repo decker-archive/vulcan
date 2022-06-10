@@ -13,17 +13,13 @@
 from typing import Any
 
 import orjson
+from fastapi import Request, Response
 
-from fastapi import Response, Request
 
 def jsonify(d: Any, status: int = 200):
-    return Response(
-        orjson.dumps(d),
-        status_code=status,
-        media_type='application/json'
-    )
+    return Response(orjson.dumps(d), status_code=status, media_type='application/json')
+
 
 async def get_data(req: Request):
     body = await req.body()
     return orjson.loads(body)
-

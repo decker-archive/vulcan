@@ -10,10 +10,10 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
+import datetime
 import os
 import threading
 import time
-import datetime
 
 
 class SnowflakeFactory:
@@ -33,6 +33,7 @@ class SnowflakeFactory:
         self._incrementation += 1
 
         return epoch
+
 
 snowflake_factory = SnowflakeFactory()
 
