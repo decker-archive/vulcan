@@ -1,11 +1,11 @@
-# r3
-Venera API and Website.
+# Manhattan
+Server powering Venera.
 
 # design
-Feature Design Document for r3.
+Feature Design Document for Manhattan.
 
-r3 is written in Python and JavaScript.
-r3 uses FastAPI for HTTP Handling, Mako for HTML Templating, Cassandra for DB Storage and many other tools.
+Manhattan is written in Python and JavaScript.
+Manhattan uses FastAPI for HTTP Handling, Mako for HTML Templating, Cassandra for DB Storage and many other tools.
 
 ## Venerette/Subera
 A Subera (or, "Venerette") is a Place where you can create posts, label those posts, add admins, and many more things.
