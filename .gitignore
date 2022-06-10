@@ -1,0 +1,4 @@
+.env
+tests/
+private/
+__pycache__/
