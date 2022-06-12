@@ -31,7 +31,7 @@ def authorize(req: Request):
 
 def verify_email(email: str):
     try:
-        User.objects(User.email == email).allow_filtering().get()
+        User.objects(User.email == email).get()
     except:
         return email
     else:

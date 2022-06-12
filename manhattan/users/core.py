@@ -56,7 +56,7 @@ async def create_token(req: Request):
     email = str(req.query_params.get('email'))
     password = str(req.query_params.get('password'))
 
-    user = User.objects(User.email == email).allow_filtering().get()
+    user = User.objects(User.email == email).get()
 
     loop = asyncio.get_running_loop()
     valid_pw = await loop.run_in_executor(
