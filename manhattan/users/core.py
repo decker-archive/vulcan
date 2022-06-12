@@ -11,6 +11,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
 import asyncio
+import random
 import re
 
 import bcrypt
@@ -23,7 +24,7 @@ from ..snowflakes import snowflake_factory
 from ..tokenize import create_token as ctoken
 from ..utils import get_data, jsonify
 
-users_router = APIRouter(prefix='/api/users')
+users_router = APIRouter(prefix='/users')
 
 
 USERNAME_REGEX = re.compile(r'^[a-zA-Z0-9\-_]{1,45}$')
@@ -38,7 +39,19 @@ async def get_me(req: Request):
     return jsonify(to_dict(authorize(req=req)))
 
 
-@users_router.get('/_auth/create-token')
+@users_router.get('/@me/logout')
+async def logout():
+    resp = jsonify({})
+
+    try:
+        resp.delete_cookie('authorization', secure=True)
+    except:
+        return resp
+    else:
+        return resp
+
+
+@users_router.get('/@me/create-token')
 async def create_token(req: Request):
     email = str(req.query_params.get('email'))
     password = str(req.query_params.get('password'))
@@ -90,29 +103,22 @@ async def create_user(request: Request):
         else:
             locale = str(data['locale'])
 
-    screen_name = name
-
-    if data.get('screen_name'):
-        screen_name = str(data['screen_name'])
-
-        if len(screen_name) > 45:
-            raise BadData(
-                'Max screen_name Length is 45', custom_msg='Invalid screen_name length'
-            )
-
     email = str(data['email'])
     verify_email(email=email)
 
     if len(email) > 50:
         raise BadData('Max email Length is 50', custom_msg='Invalid email length')
 
+    discriminator = random.randint(0, 9999)
+    discriminator = '%04d' % discriminator
+
     user: User = User.create(
         id=snowflake_factory.write(),
         email=email,
         password=password,
         name=name,
-        screen_name=screen_name,
         locale=locale,
+        discriminator=discriminator
     )
 
     asdict = to_dict(user)
