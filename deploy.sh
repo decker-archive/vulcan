@@ -1,3 +1,3 @@
 #!/bin/bash
-docker build -t concore .
-docker run -d -p 5000:5000 venera
+docker build -t venera .
+docker run -d -p 443:443 venera
