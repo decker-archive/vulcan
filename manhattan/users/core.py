@@ -40,7 +40,7 @@ async def get_me(req: Request):
 
 
 @users_router.get('/@me/logout')
-async def logout():
+async def logout(_: Request):
     resp = jsonify({})
 
     try:
