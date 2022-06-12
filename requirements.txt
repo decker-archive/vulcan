@@ -1,6 +1,7 @@
 orjson==3.7.0
 bcrypt==3.2.2
 fastapi==0.78.0
+itsdangerous==2.1.2
 python-dotenv==0.20.0
 email-validator==1.2.1
 cassandra-driver==3.25.0
