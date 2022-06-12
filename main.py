@@ -36,7 +36,8 @@ limiter = Limiter(
     storage_uri=os.getenv('REDIS_URI'),
     default_limits=[
         '10/second'
-    ]
+    ],
+    headers_enabled=True
 )
 app = FastAPI()
 app.state.limiter = limiter
