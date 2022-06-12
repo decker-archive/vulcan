@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 443
 
-CMD [ "gunicorn", "-w 9", "-k uvicorn.workers.UvicornWorker", "-b 0.0.0.0:443", "main:app" ]
+CMD [ "gunicorn", "-w 9", "-k uvicorn.workers.UvicornWorker", "-b 0.0.0.0:443", "--certfile=real.crt", "--keyfile=real.key", "main:app" ]
