@@ -1,5 +1,6 @@
 orjson==3.7.0
 bcrypt==3.2.2
+slowapi==0.1.5
 fastapi==0.78.0
 itsdangerous==2.1.2
 python-dotenv==0.20.0

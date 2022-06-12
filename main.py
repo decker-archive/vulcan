@@ -11,8 +11,13 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
 import sys
+import os
 
 from fastapi import FastAPI
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from slowapi.util import get_remote_address
+from dotenv import load_dotenv
 
 from manhattan.database import connect
 from manhattan.errors import BadData, HTTPError
@@ -23,8 +28,18 @@ from manhattan.utils import jsonify
 
 from cassandra.cqlengine.query import DoesNotExist
 
-app = FastAPI()
+load_dotenv()
 
+limiter = Limiter(
+    key_func=get_remote_address,
+    storage_uri=os.getenv('REDIS_URI'),
+    default_limits=[
+        '10/second'
+    ]
+)
+app = FastAPI()
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.include_router(users_router)
 
 
