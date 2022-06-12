@@ -82,10 +82,10 @@ async def create_user(request: Request):
 
     name = str(data['name'])
 
-    if not USERNAME_REGEX.match(name):
-        raise BadData(
-            'name does not fit regex; "^[a-zA-Z0-9\-_]{3,45}$"', custom_msg='Invalid name'
-        )
+    if len(name) > 45:
+        raise BadData(custom_msg='Name length over 45')
+    elif len(name) < 3:
+        raise BadData(custom_msg='Name length is under 3')
 
     password = await loop.run_in_executor(
         None, bcrypt.hashpw, str(data['password']).encode(), bcrypt.gensalt(17)
