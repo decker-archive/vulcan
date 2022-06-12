@@ -91,9 +91,7 @@ def to_dict(model: models.Model) -> dict:
         dict_repr['id'] = str(dict_repr['id'])
 
     if isinstance(model, User):
-        dict_repr.pop('analytic_flags')
         dict_repr.pop('password')
-        dict_repr['url'] = f'/{dict_repr["name"]}'
 
     return dict_repr
 
