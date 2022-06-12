@@ -28,6 +28,7 @@ app.include_router(users_router)
 
 @app.exception_handler(HTTPError)
 async def httperror(_, err: HTTPError):
+    print(err)
     resp = jsonify(err._to_dict(), err.HTTP_CODE)
 
     if err._delete_cookies:
@@ -39,6 +40,7 @@ async def httperror(_, err: HTTPError):
 
 @app.exception_handler(404)
 async def notfound(*_):
+    print(_)
     err = HTTPError(custom_msg='Not Found')
     err.HTTP_CODE = 404
     return await httperror(None, err=err)
@@ -46,12 +48,13 @@ async def notfound(*_):
 
 @app.exception_handler(KeyError)
 async def baddata(*_):
+    print(_)
     err = BadData()
     return await httperror(None, err=err)
 
 @app.exception_handler(DoesNotExist)
 async def doesnotexist(*_):
-    return await baddata()
+    return await baddata(*_)
 
 
 @app.on_event('startup')
