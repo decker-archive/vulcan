@@ -10,6 +10,8 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
+import sys
+
 from fastapi import FastAPI
 
 from manhattan.database import connect
@@ -28,7 +30,7 @@ app.include_router(users_router)
 
 @app.exception_handler(HTTPError)
 async def httperror(_, err: HTTPError):
-    print(err)
+    print(err, file=sys.stderr)
     resp = jsonify(err._to_dict(), err.HTTP_CODE)
 
     if err._delete_cookies:
@@ -40,7 +42,7 @@ async def httperror(_, err: HTTPError):
 
 @app.exception_handler(404)
 async def notfound(*_):
-    print(_)
+    print(_, file=sys.stderr)
     err = HTTPError(custom_msg='Not Found')
     err.HTTP_CODE = 404
     return await httperror(None, err=err)
@@ -48,7 +50,7 @@ async def notfound(*_):
 
 @app.exception_handler(KeyError)
 async def baddata(*_):
-    print(_)
+    print(_, file=sys.stderr)
     err = BadData()
     return await httperror(None, err=err)
 
