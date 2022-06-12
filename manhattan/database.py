@@ -58,7 +58,7 @@ class User(models.Model):
     """Users are the base entity of Manhattan."""
 
     id: int = columns.BigInt(primary_key=True, partition_key=True)
-    email: str = columns.Text()
+    email: str = columns.Text(index=True)
     password: str = columns.Text()
     name: str = columns.Text(index=True)
     discriminator = columns.Text()

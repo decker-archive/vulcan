@@ -19,6 +19,8 @@ from manhattan.errors import BadData, HTTPError
 from manhattan.users import users_router
 from manhattan.utils import jsonify
 
+from cassandra.cqlengine.query import DoesNotExist
+
 app = FastAPI()
 
 app.include_router(users_router)
@@ -46,6 +48,10 @@ async def notfound(*_):
 async def baddata(*_):
     err = BadData()
     return await httperror(None, err=err)
+
+@app.exception_handler(DoesNotExist)
+async def doesnotexist(*_):
+    return await baddata()
 
 
 @app.on_event('startup')
