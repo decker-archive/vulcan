@@ -109,8 +109,24 @@ async def create_user(request: Request):
     if len(email) > 50:
         raise BadData('Max email Length is 50', custom_msg='Invalid email length')
 
-    discriminator = random.randint(0, 9999)
-    discriminator = '%04d' % discriminator
+    TS = 0
+
+    while True:
+        discriminator = random.randint(0, 9999)
+        discriminator = '%04d' % discriminator
+
+        try:
+            User.objects(
+                User.name == name,
+                User.discriminator == discriminator
+            ).get()
+        except:
+            break
+
+        if TS == 5000:
+            raise BadData(custom_msg='Name is too commonly used.')
+
+        TS += 1
 
     user: User = User.create(
         id=snowflake_factory.write(),
