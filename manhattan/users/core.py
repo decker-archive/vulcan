@@ -84,7 +84,7 @@ async def create_user(request: Request):
 
     if not USERNAME_REGEX.match(name):
         raise BadData(
-            'name does not fit regex; "^[a-z0-9\-_]{3,45}$"', custom_msg='Invalid name'
+            'name does not fit regex; "^[a-zA-Z0-9\-_]{3,45}$"', custom_msg='Invalid name'
         )
 
     password = await loop.run_in_executor(
