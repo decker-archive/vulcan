@@ -1,6 +1,11 @@
 # Manhattan
 Server powering Venera.
 
+If you want to get development updates, ask questions or get support you can contact us via our Discord Server or IRC Channel.
+
+- Discord: [discord.gg/V7n95jcX2U](https://discord.gg/V7n95jcX2U).
+- IRC Channel: #venera on irc.libera.chat.
+
 # design
 Feature Design Document for Manhattan.
 
