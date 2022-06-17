@@ -1,4 +1,4 @@
-# Manhattan
+# Vulcan
 # Copyright (c) 2021-2022 Venera, Inc. All Rights Reserved.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -10,5 +10,3 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
-from .core import *
-from .posts import *

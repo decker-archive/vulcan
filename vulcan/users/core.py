@@ -1,4 +1,4 @@
-# Manhattan
+# Vulcan
 # Copyright (c) 2021-2022 Venera, Inc. All Rights Reserved.
 #
 # This program is free software: you can redistribute it and/or modify

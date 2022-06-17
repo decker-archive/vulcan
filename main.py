@@ -1,4 +1,4 @@
-# Manhattan
+# Vulcan
 # Copyright (c) 2021-2022 Venera, Inc. All Rights Reserved.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -20,12 +20,12 @@ from slowapi.util import get_remote_address
 from slowapi.middleware import SlowAPIMiddleware
 from dotenv import load_dotenv
 
-from manhattan.database import connect
-from manhattan.errors import BadData, HTTPError
+from vulcan.database import connect
+from vulcan.errors import BadData, HTTPError
 
 # routes
-from manhattan.users import users_router
-from manhattan.utils import jsonify
+from vulcan.users import users_router
+from vulcan.utils import jsonify
 
 from cassandra.cqlengine.query import DoesNotExist
 

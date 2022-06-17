@@ -1,4 +1,4 @@
-# Manhattan
+# Vulcan
 Server powering Venera.
 
 If you want to get development updates, ask questions or get support you can contact us via our Discord Server or IRC Channel.
@@ -7,10 +7,10 @@ If you want to get development updates, ask questions or get support you can con
 - IRC Channel: #venera on irc.libera.chat.
 
 # design
-Feature Design Document for Manhattan.
+Feature Design Document for Vulcan.
 
-Manhattan is written in Python and JavaScript.
-Manhattan uses FastAPI for HTTP Handling, Mako for HTML Templating, Cassandra for DB Storage and many other tools.
+Vulcan is written in Python and JavaScript.
+Vulcan uses FastAPI for HTTP Handling, Mako for HTML Templating, Cassandra for DB Storage and many other tools.
 
 ## Venerette/Subera
 A Subera (or, "Venerette") is a Place where you can create posts, label those posts, add admins, and many more things.

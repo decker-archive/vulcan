@@ -1,4 +1,4 @@
-# Manhattan
+# Vulcan
 # Copyright (c) 2021-2022 Venera, Inc. All Rights Reserved.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -10,16 +10,5 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
-from typing import Any
-
-import orjson
-from fastapi import Request, Response
-
-
-def jsonify(d: Any, status: int = 200):
-    return Response(orjson.dumps(d), status_code=status, media_type='application/json')
-
-
-async def get_data(req: Request):
-    body = await req.body()
-    return orjson.loads(body)
+from .core import *
+from .posts import *

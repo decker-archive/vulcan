@@ -1,4 +1,4 @@
-# Manhattan
+# Vulcan
 # Copyright (c) 2021-2022 Venera, Inc. All Rights Reserved.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ def connect():
         if os.getenv('SAFE', 'false') == 'true':
             connection.setup(
                 None,
-                'manhattan',
+                'vulcan',
                 cloud=cloud,
                 auth_provider=auth_provider,
                 connect_timeout=100,
@@ -41,7 +41,7 @@ def connect():
         else:
             connection.setup(
                 None,
-                'manhattan',
+                'vulcan',
                 connect_timeout=100,
                 retry_connect=True,
                 compression=False,
@@ -55,7 +55,7 @@ def _get_date():
 
 
 class User(models.Model):
-    """Users are the base entity of Manhattan."""
+    """Users are the base entity of Vulcan."""
 
     id: int = columns.BigInt(primary_key=True, partition_key=True)
     email: str = columns.Text(index=True)
