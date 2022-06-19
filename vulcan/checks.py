@@ -1,5 +1,6 @@
 # Vulcan
-# Copyright (c) 2021-2022 Venera, Inc. All Rights Reserved.
+# Copyright (c) 2021-2022 Venera Inc. All Rights Reserved.
+# Copyright (c) 2022 Gozzle Inc. All Rights Reserved.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published
